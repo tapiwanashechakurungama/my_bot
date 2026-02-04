@@ -44,6 +44,20 @@ const { parsePhoneNumber } = require("libphonenumber-js")
 const { PHONENUMBER_MCC } = require('@whiskeysockets/baileys/lib/Utils/generics')
 const { rmSync, existsSync } = require('fs')
 const { join } = require('path')
+const express = require('express')
+const app = express()
+
+// Set up a simple health check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).send('OK')
+})
+
+// Start the Express server
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+})
+
 
 // Import lightweight store
 const store = require('./lib/lightweight_store')
